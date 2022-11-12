@@ -14,17 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Task::all();
     }
 
     /**
@@ -35,7 +25,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = Task::create($request->all());
+
+        return response()->json($task, 201);
     }
 
     /**
@@ -46,18 +38,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        //
+        return $task;
     }
 
     /**
@@ -69,7 +50,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->all());
+
+        return response()->json($task, 200);
     }
 
     /**
@@ -80,6 +63,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        
+        return response()->json(null, 204);
     }
 }

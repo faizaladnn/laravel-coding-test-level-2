@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,17 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::all();
+        return User::all();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return new User();
     }
 
     /**
@@ -25,45 +35,45 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $project = Project::create($request->all());
-
-        return response()->json($project, 201);
+        $user = User::create($request->all());
+        
+        return response()->json($user, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(User $user)
     {
-        return $project;
+        return $user;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, User $user)
     {
-        $project->update($request->all());
+        $user->update($request->all());
 
-        return response()->json($project, 200);
+        return response()->json($user, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(User $user)
     {
-        $project->delete();
+        $user->delete();
 
         return response()->json(null, 204);
     }
